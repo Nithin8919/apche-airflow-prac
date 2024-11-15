@@ -1,0 +1,29 @@
+[2024-11-15T15:12:46.682+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T15:12:44.213913+00:00 [queued]>
+[2024-11-15T15:12:46.687+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T15:12:44.213913+00:00 [queued]>
+[2024-11-15T15:12:46.687+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-11-15T15:12:46.694+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_and_preprocess_data> on 2024-11-15 15:12:44.213913+00:00
+[2024-11-15T15:12:46.700+0000] {standard_task_runner.py:60} INFO - Started process 1795 to run task
+[2024-11-15T15:12:46.703+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline_dag', 'load_and_preprocess_data', 'manual__2024-11-15T15:12:44.213913+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/random.py', '--cfg-path', '/tmp/tmpwyhuh_za']
+[2024-11-15T15:12:46.704+0000] {standard_task_runner.py:88} INFO - Job 40: Subtask load_and_preprocess_data
+[2024-11-15T15:12:46.731+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T15:12:44.213913+00:00 [running]> on host 8b834e0277f8
+[2024-11-15T15:12:46.772+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='suvarna' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='load_and_preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T15:12:44.213913+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T15:12:44.213913+00:00'
+[2024-11-15T15:12:46.794+0000] {random.py:47} ERROR - Error in loading or preprocessing data: 'DataFrame' object has no attribute 'tolist'
+[2024-11-15T15:12:46.795+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/random.py", line 48, in load_and_preprocess_data
+    raise e
+  File "/opt/airflow/dags/random.py", line 39, in load_and_preprocess_data
+    kwargs['ti'].xcom_push(key='X_train', value=X_train.tolist())  # Convert to list
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 5989, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'DataFrame' object has no attribute 'tolist'
+[2024-11-15T15:12:46.804+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline_dag, task_id=load_and_preprocess_data, execution_date=20241115T151244, start_date=20241115T151246, end_date=20241115T151246
+[2024-11-15T15:12:46.813+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 40 for task load_and_preprocess_data ('DataFrame' object has no attribute 'tolist'; 1795)
+[2024-11-15T15:12:46.845+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-11-15T15:12:46.861+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

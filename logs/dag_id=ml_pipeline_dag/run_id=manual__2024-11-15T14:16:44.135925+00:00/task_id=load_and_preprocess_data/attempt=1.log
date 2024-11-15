@@ -1,0 +1,99 @@
+[2024-11-15T14:18:48.009+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [queued]>
+[2024-11-15T14:18:48.024+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [queued]>
+[2024-11-15T14:18:48.025+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-11-15T14:18:48.037+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_and_preprocess_data> on 2024-11-15 14:16:44.135925+00:00
+[2024-11-15T14:18:48.048+0000] {standard_task_runner.py:60} INFO - Started process 900 to run task
+[2024-11-15T14:18:48.052+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline_dag', 'load_and_preprocess_data', 'manual__2024-11-15T14:16:44.135925+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/random.py', '--cfg-path', '/tmp/tmpfpz6qnaf']
+[2024-11-15T14:18:48.057+0000] {standard_task_runner.py:88} INFO - Job 30: Subtask load_and_preprocess_data
+[2024-11-15T14:18:48.158+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline_dag.load_and_preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [running]> on host 8b834e0277f8
+[2024-11-15T14:18:48.231+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='suvarna' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='load_and_preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T14:16:44.135925+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T14:16:44.135925+00:00'
+[2024-11-15T14:18:48.249+0000] {python.py:201} INFO - Done. Returned value was: (array([[-1.44075296, -0.43531947, -1.36208497, ...,  0.9320124 ,
+         2.09724217,  1.88645014],
+       [ 1.97409619,  1.73302577,  2.09167167, ...,  2.6989469 ,
+         1.89116053,  2.49783848],
+       [-1.39998202, -1.24962228, -1.34520926, ..., -0.97023893,
+         0.59760192,  0.0578942 ],
+       ...,
+       [ 0.04880192, -0.55500086, -0.06512547, ..., -1.23903365,
+        -0.70863864, -1.27145475],
+       [-0.03896885,  0.10207345, -0.03137406, ...,  1.05001236,
+         0.43432185,  1.21336207],
+       [-0.54860557,  0.31327591, -0.60350155, ..., -0.61102866,
+        -0.3345212 , -0.84628745]]), array([[-0.46649743, -0.13728933, -0.44421138, ..., -0.19435087,
+         0.17275669,  0.20372995],
+       [ 1.36536344,  0.49866473,  1.30551088, ...,  0.99177862,
+        -0.561211  , -1.00838949],
+       [ 0.38006578,  0.06921974,  0.40410139, ...,  0.57035018,
+        -0.10783139, -0.20629287],
+       ...,
+       [-0.73547237, -0.99852603, -0.74138839, ..., -0.27741059,
+        -0.3820785 , -0.32408328],
+       [ 0.02898271,  2.0334026 ,  0.0274851 , ..., -0.49027026,
+        -1.60905688, -0.33137507],
+       [ 1.87216885,  2.80077153,  1.80354992, ...,  0.7925579 ,
+        -0.05868885, -0.09467243]]), 68     1
+181    0
+63     1
+248    1
+60     1
+      ..
+71     1
+106    1
+270    1
+435    0
+102    1
+Name: target, Length: 455, dtype: int64, 204    1
+70     0
+131    0
+431    1
+540    1
+      ..
+486    1
+75     0
+249    1
+238    1
+265    0
+Name: target, Length: 114, dtype: int64, StandardScaler())
+[2024-11-15T14:18:48.258+0000] {xcom.py:664} ERROR - Object of type tuple is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2024-11-15T14:18:48.259+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/json.py", line 91, in default
+    return serialize(o)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/serialization/serde.py", line 147, in serialize
+    return encode(classname, version, serialize(data, depth + 1))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/serialization/serde.py", line 126, in serialize
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/serialization/serde.py", line 126, in <listcomp>
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/serialization/serde.py", line 180, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'numpy.ndarray'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 440, in _execute_task
+    task_instance.xcom_push(key=XCOM_RETURN_KEY, value=xcom_value, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2980, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/xcom.py", line 247, in set
+    value = cls.serialize_value(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/xcom.py", line 662, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+  File "/usr/local/lib/python3.8/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/json.py", line 102, in encode
+    o = self.default(o)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/json.py", line 93, in default
+    return super().default(o)
+  File "/usr/local/lib/python3.8/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type tuple is not JSON serializable
+[2024-11-15T14:18:48.264+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline_dag, task_id=load_and_preprocess_data, execution_date=20241115T141644, start_date=20241115T141848, end_date=20241115T141848
+[2024-11-15T14:18:48.272+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 30 for task load_and_preprocess_data (Object of type tuple is not JSON serializable; 900)
+[2024-11-15T14:18:48.317+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-11-15T14:18:48.350+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

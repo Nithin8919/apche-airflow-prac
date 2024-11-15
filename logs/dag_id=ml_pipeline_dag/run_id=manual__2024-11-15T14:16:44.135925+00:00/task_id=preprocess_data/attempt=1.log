@@ -1,0 +1,27 @@
+[2024-11-15T14:16:48.914+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [queued]>
+[2024-11-15T14:16:48.919+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [queued]>
+[2024-11-15T14:16:48.919+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-11-15T14:16:48.927+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): preprocess_data> on 2024-11-15 14:16:44.135925+00:00
+[2024-11-15T14:16:48.937+0000] {standard_task_runner.py:60} INFO - Started process 856 to run task
+[2024-11-15T14:16:48.940+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline_dag', 'preprocess_data', 'manual__2024-11-15T14:16:44.135925+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/random.py', '--cfg-path', '/tmp/tmpooiad2xd']
+[2024-11-15T14:16:48.942+0000] {standard_task_runner.py:88} INFO - Job 28: Subtask preprocess_data
+[2024-11-15T14:16:48.992+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline_dag.preprocess_data manual__2024-11-15T14:16:44.135925+00:00 [running]> on host 8b834e0277f8
+[2024-11-15T14:16:49.047+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='suvarna' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T14:16:44.135925+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T14:16:44.135925+00:00'
+[2024-11-15T14:16:49.049+0000] {random.py:52} ERROR - Error in preprocessing data: 'NoneType' object has no attribute 'drop'
+[2024-11-15T14:16:49.049+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/random.py", line 53, in preprocess_data
+    raise e  # Re-raise the error to ensure task failure
+  File "/opt/airflow/dags/random.py", line 37, in preprocess_data
+    X = global_df.drop('target', axis=1)
+AttributeError: 'NoneType' object has no attribute 'drop'
+[2024-11-15T14:16:49.055+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline_dag, task_id=preprocess_data, execution_date=20241115T141644, start_date=20241115T141648, end_date=20241115T141649
+[2024-11-15T14:16:49.062+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 28 for task preprocess_data ('NoneType' object has no attribute 'drop'; 856)
+[2024-11-15T14:16:49.082+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-11-15T14:16:49.101+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
